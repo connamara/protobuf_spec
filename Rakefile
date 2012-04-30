@@ -15,11 +15,11 @@ require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "protobuf_spec"
-  gem.homepage = "http://github.com/cbusbey/protobuf_spec"
-  gem.license = "MIT"
+  gem.homepage = "git://git.connamara.com/protobuf_spec.git"
+  gem.license = "Connamara"
   gem.summary = %Q{TODO: one-line summary of your gem}
   gem.description = %Q{TODO: longer description of your gem}
-  gem.email = "chris.busbey@gmail.com"
+  gem.email = "support@connamara.com"
   gem.authors = ["Chris Busbey"]
   # dependencies defined in Gemfile
 end
