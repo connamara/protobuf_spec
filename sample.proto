@@ -1,0 +1,13 @@
+message Sample {
+  optional string string_field = 1;
+  optional int32 int_field = 2;
+  optional double double_field = 3;
+
+  optional string string_field_2 = 4;
+  optional int32 int_field_2 = 5;
+  optional double double_field_2 = 6;
+
+  optional string string_field_3 = 7;
+  optional int32 int_field_3 = 8;
+  optional double double_field_3 = 9;
+}
