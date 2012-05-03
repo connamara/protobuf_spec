@@ -17,14 +17,14 @@ Jeweler::Tasks.new do |gem|
   gem.name = "protobuf_spec"
   gem.homepage = "git://git.connamara.com/protobuf_spec.git"
   gem.license = "Connamara"
-  gem.summary = %Q{TODO: one-line summary of your gem}
+  gem.summary = %Q{RSpec matchers and cucumber step defs for testing protocol buffers}
   gem.description = %Q{TODO: longer description of your gem}
   gem.email = "support@connamara.com"
   gem.authors = ["Chris Busbey"]
   # dependencies defined in Gemfile
 end
-Jeweler::RubygemsDotOrgTasks.new
 
+require 'ci/reporter/rake/rspec'
 require 'rspec/core'
 require 'rspec/core/rake_task'
 RSpec::Core::RakeTask.new(:spec) do |spec|
@@ -46,4 +46,9 @@ Rake::RDocTask.new do |rdoc|
   rdoc.title = "protobuf_spec #{version}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
+end
+
+require 'cucumber/rake/task'
+Cucumber::Rake::Task.new do |t|
+  t.cucumber_opts = %w{--color --format pretty --format junit --out features/reports}
 end
