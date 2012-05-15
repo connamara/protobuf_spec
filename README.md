@@ -54,8 +54,8 @@ In order to use the Cucumber steps, in your `env.rb` you must:
 require "protobuf_spec/cucumber"
 ```
 
-You will need to load the ruby_protobuf generated classes you intend to test.  This can be done by generating the classes into the cucumber support/ directory, or requiring them manually.
+You will need to load the ruby_protobuf generated classes you intend to test.  This can be done by generating the classes into the cucumber ```support/``` directory, or requiring them manually.
 
-You also need to define a `last_protouf` method. 
+You also need to define a `last_protobuf` method. 
 
 See ```features/``` for example usage

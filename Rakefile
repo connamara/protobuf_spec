@@ -15,7 +15,7 @@ require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "protobuf_spec"
-  gem.homepage = "git://git.connamara.com/protobuf_spec.git"
+  gem.homepage = "http://github.com/connamara/protobuf_spec"
   gem.license = "Connamara"
   gem.summary = %Q{RSpec matchers and cucumber step defs for testing protocol buffers}
   gem.description = %Q{TODO: longer description of your gem}
