@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{protobuf_spec}
-  s.version = "0.0.0"
+  s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Chris Busbey"]
-  s.date = %q{2012-04-30}
+  s.date = %q{2012-05-15}
   s.description = %q{TODO: longer description of your gem}
   s.email = %q{support@connamara.com}
   s.extra_rdoc_files = [
@@ -34,33 +34,46 @@ Gem::Specification.new do |s|
     "lib/protobuf_spec/cucumber.rb",
     "lib/protobuf_spec/matchers.rb",
     "lib/protobuf_spec/matchers/be_protobuf_eql.rb",
+    "protobuf_spec.gemspec",
     "sample.proto",
     "spec/protobuf_spec/matchers/be_protobuf_eql_spec.rb",
     "spec/spec_helper.rb",
     "spec/support/sample.pb.rb"
   ]
-  s.homepage = %q{git://git.connamara.com/protobuf_spec.git}
+  s.homepage = %q{http://github.com/connamara/protobuf_spec}
   s.licenses = ["Connamara"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.6.2}
-  s.summary = %q{TODO: one-line summary of your gem}
+  s.summary = %q{RSpec matchers and cucumber step defs for testing protocol buffers}
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
+      s.add_runtime_dependency(%q<ruby_protobuf>, [">= 0"])
       s.add_development_dependency(%q<rspec>, ["~> 2.8.0"])
-      s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
+      s.add_development_dependency(%q<bundler>, ["~> 1"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.8.3"])
+      s.add_development_dependency(%q<rake>, ["~> 0.9"])
+      s.add_development_dependency(%q<cucumber>, [">= 0"])
+      s.add_development_dependency(%q<ci_reporter>, [">= 0"])
     else
+      s.add_dependency(%q<ruby_protobuf>, [">= 0"])
       s.add_dependency(%q<rspec>, ["~> 2.8.0"])
-      s.add_dependency(%q<bundler>, ["~> 1.0.0"])
+      s.add_dependency(%q<bundler>, ["~> 1"])
       s.add_dependency(%q<jeweler>, ["~> 1.8.3"])
+      s.add_dependency(%q<rake>, ["~> 0.9"])
+      s.add_dependency(%q<cucumber>, [">= 0"])
+      s.add_dependency(%q<ci_reporter>, [">= 0"])
     end
   else
+    s.add_dependency(%q<ruby_protobuf>, [">= 0"])
     s.add_dependency(%q<rspec>, ["~> 2.8.0"])
-    s.add_dependency(%q<bundler>, ["~> 1.0.0"])
+    s.add_dependency(%q<bundler>, ["~> 1"])
     s.add_dependency(%q<jeweler>, ["~> 1.8.3"])
+    s.add_dependency(%q<rake>, ["~> 0.9"])
+    s.add_dependency(%q<cucumber>, [">= 0"])
+    s.add_dependency(%q<ci_reporter>, [">= 0"])
   end
 end
 
