@@ -6,4 +6,4 @@ def last_protobuf
   @last_protobuf
 end
 
-require "protobuf_spec/protobuf_builder"
+require "protobuf_spec/builder"

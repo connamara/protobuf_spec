@@ -101,7 +101,7 @@ Feature: Weather API
 In order to use the Cucumber steps for building protocol buffers, in your ```env.rb``` you must:
 
 ```ruby
-require "protobuf_spec/protobuf_builder"
+require "protobuf_spec/builder"
 ```
 Now you can use proto_spec builder steps in your features:
 
@@ -121,6 +121,6 @@ Feature: Weather Request API
     And the ProtoBuf at "temperature" should be 72
 ```
 
-The built protocol buffer can be accessed through the ```protobuf``` function in the ```ProtobufSpec::ProtobufBuilder``` module.
+The built protocol buffer can be accessed through the ```protobuf``` function in the ```ProtobufSpec::Builder``` module.
 
 
