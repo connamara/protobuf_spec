@@ -1,6 +1,6 @@
 Feature: Paths
   Background:
-    Given the ProtoBuf is:
+    Given I create the following ProtoBuf of type "Sample":
     """
     {
       "string_field": "foo",
