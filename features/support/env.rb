@@ -5,3 +5,5 @@ require "protobuf_spec/cucumber"
 def last_protobuf
   @last_protobuf
 end
+
+require "protobuf_spec/protobuf_builder"

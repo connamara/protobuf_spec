@@ -69,7 +69,7 @@ end
 
 See ```features/support/env.rb``` for a very simple implementation.
 
-Now you can use proto_spec steps in your in your features:
+Now you can use proto_spec steps in your features:
 
 
 ```cucumber
@@ -95,3 +95,32 @@ Feature: Weather API
     And the ProtoBuf should have "bring_umbrella"
     And the ProtoBuf at "bring_umbrella" should be true
 ```
+
+### Building Protobufs
+
+In order to use the Cucumber steps for building protocol buffers, in your ```env.rb``` you must:
+
+```ruby
+require "protobuf_spec/protobuf_builder"
+```
+Now you can use proto_spec builder steps in your features:
+
+```cucumber
+Feature: Weather Request API
+  Background: 
+    Given the weather is 58 degrees and cloudy in Chicago
+    And the weather is 72 degrees and sunny in Portland
+
+  Scenario: I can request the weather for a city by protocol buffer
+    Given I create a ProtoBuf of type "com.weather.WeatherRequest"
+    And I set the ProtoBuf at "city" to "Portland"
+    And I set the ProtoBuf at "zipcode" to 97211    
+    When I request weather for Portland
+    Then I should receive a ProtoBuf of type com.weather.WeatherResponse
+    And the ProtoBuf at "condition" should be "sunny"
+    And the ProtoBuf at "temperature" should be 72
+```
+
+The built protocol buffer can be accessed through the ```protobuf``` function in the ```ProtobufSpec::ProtobufBuilder``` module.
+
+
