@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{protobuf_spec}
-  s.version = "0.1.0"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Chris Busbey"]
-  s.date = %q{2012-05-15}
+  s.date = %q{2012-05-16}
   s.description = %q{TODO: longer description of your gem}
   s.email = %q{support@connamara.com}
   s.extra_rdoc_files = [
@@ -25,12 +25,14 @@ Gem::Specification.new do |s|
     "README.md",
     "Rakefile",
     "VERSION",
+    "features/builder.feature",
     "features/equivalence.feature",
     "features/paths.feature",
     "features/step_definitions/steps.rb",
     "features/support/env.rb",
     "features/support/sample.pb.rb",
     "lib/protobuf_spec.rb",
+    "lib/protobuf_spec/builder.rb",
     "lib/protobuf_spec/cucumber.rb",
     "lib/protobuf_spec/matchers.rb",
     "lib/protobuf_spec/matchers/be_protobuf_eql.rb",
