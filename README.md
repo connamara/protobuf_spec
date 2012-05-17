@@ -115,10 +115,22 @@ Feature: Weather Request API
     Given I create a ProtoBuf of type "com.weather.WeatherRequest"
     And I set the ProtoBuf at "city" to "Portland"
     And I set the ProtoBuf at "zipcode" to 97211    
-    When I request weather for Portland
+    When I send the request
     Then I should receive a ProtoBuf of type com.weather.WeatherResponse
     And the ProtoBuf at "condition" should be "sunny"
     And the ProtoBuf at "temperature" should be 72
+
+    Given I create the following protobuf of type "com.weather.WeatherRequest":
+    """
+    {
+      "city": "Chicago",
+      "zipcode": 60606    
+    }
+    """
+    When I send the request
+    Then I should receive a ProtoBuf of type com.weather.WeatherResponse
+    And the ProtoBuf at "condition" should not be "sunny"
+    And the ProtoBuf at "temperature" should be 58
 ```
 
 The built protocol buffer can be accessed through the ```protobuf``` function in the ```ProtobufSpec::Builder``` module.
