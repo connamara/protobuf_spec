@@ -1,3 +1,11 @@
+GIT
+  remote: git@github.com:connamara/cuke_mem.git
+  revision: 960db2cdceeee0907be6eaab6c46b139633438fb
+  tag: v0.1.0
+  specs:
+    cuke_mem (0.1.0)
+      cucumber
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -45,6 +53,7 @@ DEPENDENCIES
   bundler (~> 1)
   ci_reporter
   cucumber
+  cuke_mem!
   jeweler (~> 1.8.3)
   rake (~> 0.9)
   rspec (~> 2.8.0)

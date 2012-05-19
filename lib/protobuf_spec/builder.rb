@@ -1,3 +1,5 @@
+require 'cuke_mem'
+
 module ProtobufSpec
 module Builder 
   def self.protobuf
@@ -36,3 +38,9 @@ Given /^I create the following (?:ProtoBuf|Protobuf|protobuf) of type "([^"]*)":
     ProtobufSpec::Builder.protobuf[field_name] = json[field_name] if json.has_key? field_name
   end
 end
+
+When /^I deserialize a (?:ProtoBuf|Protobuf|protobuf) of type "([^"]*)" from "([^"]*)"$/ do |proto_type, serial|
+  steps %{Given I create a ProtoBuf of type "#{proto_type}"}
+  ProtobufSpec::Builder.protobuf.parse_from_string CukeMem.remember(serial)
+end
+

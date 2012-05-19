@@ -1,5 +1,7 @@
 require File.expand_path("../../protobuf_spec", __FILE__)
 
+require 'cuke_mem'
+
 World(ProtobufSpec::Matchers)
 
 def test_protobuf_val_at_path(path, negative, value)
@@ -32,3 +34,8 @@ Then /^the (?:ProtoBuf|Protobuf|protobuf) should( not)? have "([^"]*)"$/ do |neg
     last_protobuf.should have_field(path)
   end
 end
+
+When /^I save the serialized (?:ProtoBuf|Protobuf|protobuf) as "([^"]*)"$/ do |key|
+  CukeMem.memorize key, last_protobuf.serialize_to_string
+end
+
