@@ -112,15 +112,15 @@ Feature: Weather Request API
     And the weather is 72 degrees and sunny in Portland
 
   Scenario: I can request the weather for a city by protocol buffer
-    Given I create a ProtoBuf of type "com.weather.WeatherRequest"
+    Given I create a ProtoBuf of type "com::weather::WeatherRequest"
     And I set the ProtoBuf at "city" to "Portland"
     And I set the ProtoBuf at "zipcode" to 97211    
     When I send the request
-    Then I should receive a ProtoBuf of type com.weather.WeatherResponse
+    Then I should receive a ProtoBuf of type com::weather::WeatherResponse
     And the ProtoBuf at "condition" should be "sunny"
     And the ProtoBuf at "temperature" should be 72
 
-    Given I create the following protobuf of type "com.weather.WeatherRequest":
+    Given I create the following protobuf of type "com::weather::WeatherRequest":
     """
     {
       "city": "Chicago",
@@ -128,11 +128,36 @@ Feature: Weather Request API
     }
     """
     When I send the request
-    Then I should receive a ProtoBuf of type com.weather.WeatherResponse
+    Then I should receive a ProtoBuf of type com::weather::WeatherResponse
     And the ProtoBuf at "condition" should not be "sunny"
     And the ProtoBuf at "temperature" should be 58
 ```
 
 The built protocol buffer can be accessed through the ```protobuf``` function in the ```ProtobufSpec::Builder``` module.
+
+
+### Cuke Mem
+
+The Cucumber step definitions hook into Cuke Mem to serialize and deserialize protocol buffers
+
+```cucumber
+Feature: Weather Request API
+  Background: 
+    Given the weather is 58 degrees and cloudy in Chicago
+    And the weather is 72 degrees and sunny in Portland
+
+  Scenario: I can request the weather for a city by serializing and deserializing protocol buffers
+    Given I create a ProtoBuf of type "com::weather::WeatherRequest"
+    And I set the ProtoBuf at "city" to "Portland"
+    And I set the ProtoBuf at "zipcode" to 97211    
+    And I save the serialized ProtoBuf as "SERIALIZED"
+
+    When I send data "%{SERIALIZED}"
+    Then I should receive a response "%{RESPONSE}"
+
+    When I deserialize a ProtoBuf of type "com::weather::Response" from "%{RESPONSE}"
+    Then the ProtoBuf at "condition" should be "sunny"
+    And the ProtoBuf at "temperature" should be 72
+```
 
 
