@@ -12,6 +12,10 @@
 #   optional string string_field_3 = 7;
 #   optional int32 int_field_3 = 8;
 #   optional double double_field_3 = 9;
+# 
+#   optional bool bool_field=10;
+#   optional bool bool_field_2=11;
+#   optional bool bool_field_3=12;
 # }
 
 require 'protobuf/message/message'
@@ -30,4 +34,7 @@ class Sample < ::Protobuf::Message
   optional :string, :string_field_3, 7
   optional :int32, :int_field_3, 8
   optional :double, :double_field_3, 9
+  optional :bool, :bool_field, 10
+  optional :bool, :bool_field_2, 11
+  optional :bool, :bool_field_3, 12
 end

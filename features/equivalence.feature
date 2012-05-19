@@ -6,7 +6,9 @@ Feature: Equivalence
       "string_field": "foo",
       "int_field": 5,    
       "double_field": 50.23,    
-      "int_field_2": -9    
+      "int_field_2": -9,    
+      "bool_field": true,
+      "bool_field_2": false
     }
     """
 
@@ -31,3 +33,10 @@ Feature: Equivalence
     When I get the ProtoBuf
     Then the ProtoBuf at "double_field" should be 50.23
     Then the ProtoBuf at "double_field" should not be -15.45
+
+    Scenario: Bool
+    When I get the ProtoBuf
+    Then the protobuf at "bool_field" should be true
+    Then the protobuf at "bool_field" should not be false
+    Then the protobuf at "bool_field_2" should be false
+    Then the protobuf at "bool_field_2" should not be true

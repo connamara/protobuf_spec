@@ -19,6 +19,12 @@ Then /^the (?:ProtoBuf|Protobuf|protobuf) at "([^"]*)" should( not)? be "([^"]*)
   test_protobuf_val_at_path(path, negative, value)
 end
 
+Then /^the (?:ProtoBuf|Protobuf|protobuf) at "([^"]*)" should( not)? be (true|false)$/ do |path, negative, value|
+  test_protobuf_val_at_path(path, negative, (value == "true"))
+end
+
+
+
 Then /^the (?:ProtoBuf|Protobuf|protobuf) should( not)? have "([^"]*)"$/ do |negative, path|
   if negative
     last_protobuf.should_not have_field(path)
