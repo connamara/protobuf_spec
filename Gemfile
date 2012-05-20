@@ -1,7 +1,9 @@
 source "http://rubygems.org"
 
 gem "ruby_protobuf"
+gem "json_spec"
 gem "cuke_mem", :git=>"git@github.com:connamara/cuke_mem.git", :tag=>"v0.1.0"
+
 
 # Add dependencies to develop your gem here.
 # Include everything needed to run rake, tests, features, etc.

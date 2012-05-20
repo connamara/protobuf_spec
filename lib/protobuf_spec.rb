@@ -1,2 +1,2 @@
-require 'rspec'
-require 'protobuf_spec/matchers'
+require 'json_spec'
+require 'protobuf_spec/extensions'
