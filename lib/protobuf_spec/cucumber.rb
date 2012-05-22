@@ -2,6 +2,7 @@ require File.expand_path("../../protobuf_spec", __FILE__)
 require 'cuke_mem'
 
 World(JsonSpec::Helpers, JsonSpec::Matchers)
+World(ProtobufSpec::Matchers)
 
 When /^(?:I )?keep the (?:ProtoBuf|protobuf|Protobuf)(?: response)?(?: at "(.*)")? as "(.*)"$/ do |path, key|
   CukeMem.memorize(key, normalize_json(last_protobuf.to_json, path))
@@ -55,9 +56,9 @@ end
 
 Then /^the (?:ProtoBuf|Protobuf|protobuf)(?: response)? should( not)? have "(.*)"$/ do |negative, path|
   if negative
-    last_protobuf.to_json.should_not have_json_path(path)
+    last_protobuf.should_not have_protobuf_path(path)
   else
-    last_protobuf.to_json.should have_json_path(path)
+    last_protobuf.should have_protobuf_path(path)
   end
 end
 
