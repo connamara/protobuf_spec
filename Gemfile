@@ -1,7 +1,7 @@
 source "http://rubygems.org"
 
 gem "ruby_protobuf"
-gem "json_spec"
+gem "json_spec", "~> 1.0.3"
 gem "cuke_mem", :git=>"git@github.com:connamara/cuke_mem.git", :tag=>"v0.1.0"
 
 

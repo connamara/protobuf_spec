@@ -26,17 +26,17 @@ end
 
 Then /^the (?:ProtoBuf|Protobuf|protobuf)(?: response)?(?: at "(.*)")? should( not)? be:$/ do |path, negative, json|
   if negative
-    last_protobuf.to_json.should_not be_json_eql(CukeMem.remember(json)).at_path(path)
+    last_protobuf.should_not be_protobuf_eql(CukeMem.remember(json)).at_path(path)
   else
-    last_protobuf.to_json.should be_json_eql(CukeMem.remember(json)).at_path(path)
+    last_protobuf.should be_protobuf_eql(CukeMem.remember(json)).at_path(path)
   end
 end
 
 Then /^the (?:ProtoBuf|Protobuf|protobuf)(?: response)?(?: at "(.*)")? should( not)? be (".*"|\-?\d+(?:\.\d+)?(?:[eE][\+\-]?\d+)?|\[.*\]|%?\{.*\}|true|false|null)$/ do |path, negative, value|
   if negative
-    last_protobuf.to_json.should_not be_json_eql(CukeMem.remember(value)).at_path(path)
+    last_protobuf.should_not be_protobuf_eql(CukeMem.remember(value)).at_path(path)
   else
-    last_protobuf.to_json.should be_json_eql(CukeMem.remember(value)).at_path(path)
+    last_protobuf.should be_protobuf_eql(CukeMem.remember(value)).at_path(path)
   end
 end
 
