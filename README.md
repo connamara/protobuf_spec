@@ -1,7 +1,7 @@
 protobuf_spec
 =============
 
-RSpec matchers and Cucumber step definitions for testing Protocol Buffers
+RSpec matchers and Cucumber step definitions for testing Protocol Buffers using [json_spec](https://github.com/collectiveidea/json_spec)
 
 Setup
 -----
@@ -17,35 +17,18 @@ Test
 RSpec
 -----
 
-protobuf_spec currently defines one matcher:
+protobuf_spec currently defines two matchers:
 
 * ```be_protobuf_eql```
+* ```have_protobuf_path```
 
+The matchers can be used as their counterparts are used in json_spec
 
-The matcher can be used as follows:
-
-```ruby
-describe ProtobufSpec::Matchers::BeProtobufEql do
-  before(:each) do
-    @sample = Sample.new
-    @sample.string_field="foo"
-  end
-
-  it "matches at a path"  do
-    @sample.should be_protobuf_eql("foo").at_path("string_field")
-  end
-
-  it "doesn't match for unset path"  do
-    @sample.should_not be_protobuf_eql("").at_path("string_field_2")
-  end
-end
-```
 
 Cucumber
 --------
 
 protobuf_spec provides cucumber steps that use its RSpec matchers.
-
 
 In order to use the Cucumber steps, in your ```env.rb``` you must:
 
@@ -86,8 +69,13 @@ Feature: Weather API
 
     When I request weather for Chicago
     Then I should receive a ProtoBuf of type com.weather.WeatherResponse
-    And the ProtoBuf at "condition" should not be "sunny"
-    And the ProtoBuf at "temperature" should be 58
+    And the ProtoBuf should be:
+    """
+    {
+      "condition":"sunny",
+      "temperature":58
+    }
+    """
 
   Scenario: I can check if I need an umbrella
     When I request the forecast for Chicago
@@ -95,6 +83,8 @@ Feature: Weather API
     And the ProtoBuf should have "bring_umbrella"
     And the ProtoBuf at "bring_umbrella" should be true
 ```
+
+The background and request/receive steps above aren't provided by protobuf_spec.  The remaining steps protobuf_spec provides.  See [json_spec documentation](https://github.com/collectiveidea/json_spec) for more examples
 
 ### Building Protobufs
 
@@ -134,30 +124,3 @@ Feature: Weather Request API
 ```
 
 The built protocol buffer can be accessed through the ```protobuf``` function in the ```ProtobufSpec::Builder``` module.
-
-
-### Cuke Mem
-
-The Cucumber step definitions hook into Cuke Mem to serialize and deserialize protocol buffers
-
-```cucumber
-Feature: Weather Request API
-  Background: 
-    Given the weather is 58 degrees and cloudy in Chicago
-    And the weather is 72 degrees and sunny in Portland
-
-  Scenario: I can request the weather for a city by serializing and deserializing protocol buffers
-    Given I create a ProtoBuf of type "com::weather::WeatherRequest"
-    And I set the ProtoBuf at "city" to "Portland"
-    And I set the ProtoBuf at "zipcode" to 97211    
-    And I save the serialized ProtoBuf as "SERIALIZED"
-
-    When I send data "%{SERIALIZED}"
-    Then I should receive a response "%{RESPONSE}"
-
-    When I deserialize a ProtoBuf of type "com::weather::Response" from "%{RESPONSE}"
-    Then the ProtoBuf at "condition" should be "sunny"
-    And the ProtoBuf at "temperature" should be 72
-```
-
-
