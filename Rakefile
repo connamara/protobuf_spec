@@ -13,12 +13,11 @@ require 'rake'
 
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
-  # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "protobuf_spec"
   gem.homepage = "http://github.com/connamara/protobuf_spec"
   gem.license = "Connamara"
   gem.summary = %Q{RSpec matchers and cucumber step defs for testing protocol buffers}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.description = %Q{Leverages json_spec to test structured protocol buffers with json data modeling}
   gem.email = "support@connamara.com"
   gem.authors = ["Chris Busbey"]
   # dependencies defined in Gemfile

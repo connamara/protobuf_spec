@@ -5,12 +5,12 @@
 
 Gem::Specification.new do |s|
   s.name = %q{protobuf_spec}
-  s.version = "0.2.0"
+  s.version = "0.3.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Chris Busbey"]
-  s.date = %q{2012-05-22}
-  s.description = %q{TODO: longer description of your gem}
+  s.date = %q{2012-05-23}
+  s.description = %q{Leverages json_spec to test structured protocol buffers with json data modeling}
   s.email = %q{support@connamara.com}
   s.extra_rdoc_files = [
     "LICENSE.txt",
@@ -39,6 +39,7 @@ Gem::Specification.new do |s|
     "lib/protobuf_spec/extensions.rb",
     "lib/protobuf_spec/matchers.rb",
     "lib/protobuf_spec/matchers/be_protobuf_eql.rb",
+    "lib/protobuf_spec/matchers/have_protobuf_path.rb",
     "protobuf_spec.gemspec",
     "sample.proto",
     "spec/protobuf_spec/matchers/be_protobuf_eql_spec.rb",
@@ -56,7 +57,7 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<ruby_protobuf>, [">= 0"])
-      s.add_runtime_dependency(%q<json_spec>, [">= 0"])
+      s.add_runtime_dependency(%q<json_spec>, ["~> 1.0.3"])
       s.add_runtime_dependency(%q<cuke_mem>, [">= 0"])
       s.add_development_dependency(%q<rspec>, ["~> 2.8.0"])
       s.add_development_dependency(%q<bundler>, ["~> 1"])
@@ -66,7 +67,7 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<ci_reporter>, [">= 0"])
     else
       s.add_dependency(%q<ruby_protobuf>, [">= 0"])
-      s.add_dependency(%q<json_spec>, [">= 0"])
+      s.add_dependency(%q<json_spec>, ["~> 1.0.3"])
       s.add_dependency(%q<cuke_mem>, [">= 0"])
       s.add_dependency(%q<rspec>, ["~> 2.8.0"])
       s.add_dependency(%q<bundler>, ["~> 1"])
@@ -77,7 +78,7 @@ Gem::Specification.new do |s|
     end
   else
     s.add_dependency(%q<ruby_protobuf>, [">= 0"])
-    s.add_dependency(%q<json_spec>, [">= 0"])
+    s.add_dependency(%q<json_spec>, ["~> 1.0.3"])
     s.add_dependency(%q<cuke_mem>, [">= 0"])
     s.add_dependency(%q<rspec>, ["~> 2.8.0"])
     s.add_dependency(%q<bundler>, ["~> 1"])
