@@ -6,12 +6,16 @@ describe ProtobufSpec::Matchers::BeProtobufEql do
     @sample.string_field="foo"
   end
 
-  it "matches at a path"  do
-    @sample.should be_protobuf_eql("foo").at_path("string_field")
+  it "matches identical JSON" do
+    @sample.should be_protobuf_eql(%({"string_field":"foo"}))
   end
 
-  it "doesn't match for unset path"  do
-    @sample.should_not be_protobuf_eql("").at_path("string_field_2")
+  it "matches at a path"  do
+    @sample.should be_protobuf_eql(%("foo")).at_path("string_field")
+  end
+
+  it "doesn't match at a path"  do
+    @sample.should_not be_protobuf_eql(%("bar")).at_path("string_field")
   end
 
 end

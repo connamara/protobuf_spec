@@ -13,3 +13,9 @@ Feature: Paths
     Then the ProtoBuf should have "string_field"
     Then the ProtoBuf should have "int_field"
     Then the ProtoBuf should not have "double_field"
+
+    Scenario: Table format
+    When I get the ProtoBuf
+    Then the ProtoBuf should have the following:
+      | string_field  |
+      | int_field     |

@@ -1,41 +1,36 @@
+require 'json_spec/messages'
+
 module ProtobufSpec
   module Matchers
     class BeProtobufEql
+      include JsonSpec::Messages
 
-      attr_reader :expected_value, :actual
+      attr_reader :actual
 
-      def initialize(expected_value = nil)
-        @expected_value = expected_value
+      def initialize(expected_json = nil)
+        @json_matcher= JsonSpec::Matchers::BeJsonEql.new expected_json
       end
 
       def at_path(path)
         @path=path
+        @json_matcher.at_path path
         self
       end
 
       def matches?(protobuf)
-        raise "Expected value not provided" if @expected_value.nil?
-        raise "Path not provided" if @path.nil?
-
-        unless protobuf.has_field? @path
-          @actual = nil
-          return false
-        end
-
-        @actual = protobuf[@path]
-        protobuf[@path] == @expected_value
+        @json_matcher.matches? protobuf.to_json
       end
 
       def failure_message_for_should
-        if @actual.nil?
-          "Expected '#{@expected_value}' at '#{@path}' but '#{@path}' is unset"
-        else
-          "Expected '#{@expected_value}' at '#{@path}' but got '#{@actual}'"
-        end
+        message_with_path("Expected equivalent Protobuf")
       end
 
       def negative_failure_message
-        "Didn't expect to find '#{@expected_value}' at '#{@path}'"
+        message_with_path("Expected inequivalent Protobuf")
+      end
+
+      def description
+        message_with_path("equal Protobuf")
       end
     end
   end
