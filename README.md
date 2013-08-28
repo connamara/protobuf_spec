@@ -1,34 +1,24 @@
-protobuf_spec
+protobuf\_spec
 =============
 
 RSpec matchers and Cucumber step definitions for testing Protocol Buffers using [json_spec](https://github.com/collectiveidea/json_spec)
 
-Setup
+Usage
 -----
 
-    bundle install
+### RSpec
 
-Test
-----
-
-    rake spec
-    rake cucumber
-
-RSpec
------
-
-protobuf_spec currently defines two matchers:
+protobuf\_spec currently defines two matchers:
 
 * ```be_protobuf_eql```
 * ```have_protobuf_path```
 
-The matchers can be used as their counterparts are used in json_spec
+The matchers can be used as their counterparts are used in json\_spec
 
 
-Cucumber
---------
+### Cucumber
 
-protobuf_spec provides cucumber steps that use its RSpec matchers.
+protobuf\_spec provides cucumber steps that use its RSpec matchers.
 
 In order to use the Cucumber steps, in your ```env.rb``` you must:
 
@@ -38,7 +28,7 @@ require "protobuf_spec/cucumber"
 
 You will need to load the ruby_protobuf generated classes you intend to test.  This can be done by generating the classes into the cucumber ```support/``` directory, or requiring them manually.
 
-### "Should" Assertions 
+#### "Should" Assertions 
 
 In order to test the contents of a Protocol Buffer, you will need to define a ```last_protobuf``` method.  This method should return the protocol buffer to be tested by a protobuf_spec Cucumber step. 
 
@@ -86,7 +76,7 @@ Feature: Weather API
 
 The background and request/receive steps above aren't provided by protobuf_spec.  The remaining steps protobuf_spec provides.  See [json_spec documentation](https://github.com/collectiveidea/json_spec) for more examples
 
-### Building Protobufs
+#### Building Protobufs
 
 In order to use the Cucumber steps for building protocol buffers, in your ```env.rb``` you must:
 
@@ -124,3 +114,52 @@ Feature: Weather Request API
 ```
 
 The built protocol buffer can be accessed through the ```protobuf``` function in the ```ProtobufSpec::Builder``` module.
+
+### More
+
+Check out [specs](https://github.com/connamara/protobuf_spec/blob/master/spec) and [features](https://github.com/connamara/protobuf_spec/blob/master/features) to see all the ways you can use protobuf_spec.
+
+Install
+-------
+
+```shell
+gem install protobuf_spec
+```
+
+or add the following to Gemfile:
+```ruby
+gem 'protobuf_spec'
+```
+and run `bundle install` from your shell.
+
+More Information
+----------------
+
+* [Rubygems](https://rubygems.org/gems/protobuf_spec)
+* [Issues](https://github.com/connamara/protobuf_spec/issues)
+* [Connamara Systems](http://connamara.com)
+
+Contributing
+------------
+
+Please see the [contribution guidelines](https://github.com/connamara/protobuf_spec/blob/master/CONTRIBUTION_GUIDELINES.md).
+
+Credits
+-------
+
+Contributers:
+
+* Chris Busbey
+
+![Connamara Systems](http://www.connamara.com/images/home-connamara-logo-lg.png)
+
+protobuf_spec is maintained and funded by [Connamara Systems, llc](http://connamara.com).
+
+The names and logos for Connamara Systems are trademarks of Connamara Systems, llc.
+
+Licensing
+---------
+
+protobuf_spec is Copyright © 2013 Connamara Systems, llc. 
+
+This software is available under the GPL and a commercial license.  Please see the [LICENSE](https://github.com/connamara/protobuf_spec/blob/master/LICENSE.txt) file for the terms specified by the GPL license.  The commercial license offers more flexible licensing terms compared to the GPL, and includes support services.  [Contact us](mailto:info@connamara.com) for more information on the Connamara commercial license, what it enables, and how you can start developing with it.
