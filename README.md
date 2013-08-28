@@ -1,4 +1,4 @@
-protobuf\_spec
+protobuf\_spec [![Build Status](https://travis-ci.org/connamara/protobuf_spec.png)](https://travis-ci.org/connamara/protobuf_spec)
 =============
 
 RSpec matchers and Cucumber step definitions for testing Protocol Buffers using [json_spec](https://github.com/collectiveidea/json_spec)
