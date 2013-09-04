@@ -115,6 +115,27 @@ Feature: Weather Request API
 
 The built protocol buffer can be accessed through the ```protobuf``` function in the ```ProtobufSpec::Builder``` module.
 
+### Testing with a Transport Layer
+
+Normally you will pair a serialization method like Protocol Buffers with a transport layer in systems that send and receive serialized data. protobuf\_spec can easily integrated with a transport testing platform to test such systems.  Consider again the weather example presented above.  If the weather server used [ZeroMQ](http://zeromq.org) as a transport layer, one could use an agent platform like [agent_zmq](https://github.com/connamara/agent_zmq) to test and control the transport concern.  Using agent\_zmq, we could construct the following step definitions
+
+```ruby
+When /^I send the request$/ do
+  AgentZeroMQ.agents_hash[:requester].publish [ProtobufSpec::Builder.protobuf.serialize_to_string]
+end
+
+Then /^I should receive a ProtoBuf of type com::weather::WeatherResponse$/
+  steps %{Then I should receive a response on ZeroMQ with agent "requester"}
+
+  @my_protocol_buffer=Com::weather::WeatherResponse.new
+  @my_protocol_buffer.parse_from_string last_zmq_message.last
+end
+
+...
+```
+
+See [agent_zmq](https://github.com/connamara/agent_zmq) for additional information.  A similar abstraction could be applied to any other transport layer. 
+
 ### More
 
 Check out [specs](https://github.com/connamara/protobuf_spec/blob/master/spec) and [features](https://github.com/connamara/protobuf_spec/blob/master/features) to see all the ways you can use protobuf_spec.
