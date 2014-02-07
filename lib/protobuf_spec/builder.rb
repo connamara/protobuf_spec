@@ -29,6 +29,10 @@ Given /^I set the (?:ProtoBuf|Protobuf|protobuf) at "([^"]*)" to (-?\d+\.\d+)$/ 
   ProtobufSpec::Builder.protobuf.send("#{field}=".to_sym, val.to_f)
 end
 
+Given /^I set the (?:ProtoBuf|Protobuf|protobuf) at "([^"]*)" to (-?true|false)$/ do |field, val|
+  ProtobufSpec::Builder.protobuf.send("#{field}=".to_sym, val == "true")
+end
+
 Given /^I create the following (?:ProtoBuf|Protobuf|protobuf) of type "([^"]*)":$/ do |proto_type, proto_as_json|
   steps %{Given I create a ProtoBuf of type "#{proto_type}"}
 
