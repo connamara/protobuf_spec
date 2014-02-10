@@ -11,10 +11,12 @@ Feature: Building ProtoBufs
       And I set the ProtoBuf at "string_field" to "hello"
       And I set the ProtoBuf at "int_field" to -5
       And I set the ProtoBuf at "double_field" to 123.45
+      And I set the ProtoBuf at "bool_field" to true
       When I get the ProtoBuf
       Then the ProtoBuf at "string_field" should be "hello"
       And the ProtoBuf at "int_field" should be -5
       And the ProtoBuf at "double_field" should be 123.45
+      And the ProtoBuf at "bool_field" should be true
 
     Scenario: I can create a protobuf with a json description
       Given I create the following ProtoBuf of type "Sample":
