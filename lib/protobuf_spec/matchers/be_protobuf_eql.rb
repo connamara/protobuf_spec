@@ -5,10 +5,20 @@ module ProtobufSpec
     class BeProtobufEql
       include JsonSpec::Messages
 
-      attr_reader :actual
+      def diffable?
+        true
+      end
 
       def initialize(expected_json = nil)
         @json_matcher= JsonSpec::Matchers::BeJsonEql.new expected_json
+      end
+
+      def expected
+        @json_matcher.expected
+      end
+
+      def actual
+        @json_matcher.actual
       end
 
       def at_path(path)
