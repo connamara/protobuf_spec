@@ -41,7 +41,7 @@ Then /^the (?:ProtoBuf|Protobuf|protobuf)(?: response)?(?: at "(.*)")? should( n
 end
 
 Then /^the (?:ProtoBuf|Protobuf|protobuf)(?: response)?(?: at "(.*)")? should have the following:$/ do |base, table|
-  table.rows.each do |path, value|
+  table.raw.each do |path, value|
     path = [base, path].compact.join("/")
 
     if value
